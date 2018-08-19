@@ -5,26 +5,13 @@ has all unique characters. What if you cannot use additional
 data structures?
 '''
 
-# Initial question
-# O(n) is best as all characters must be visisted at least once
+# O(log n)
 def is_unique(s):
-	d = {}
-	for c in s:
-		if c in d:
+	s = list(s)
+	# O(log n)
+	s.sort()
+	# O(n)
+	for i in range(len(s) - 1):
+		if s[i] == s[i + 1]:
 			return False
-		d[c] = True
 	return True
-
-print(is_unique("asdf"))
-print(is_unique("asdfa"))
-# Without additional data structures
-# With no memory the best we have is O(n**2)
-def is_unique(s):
-	for i in range(len(s)):
-		for i2 in range(i + 1, len(s)):
-			if s[i] == s[i2]:
-				return False
-	return True
-
-print(is_unique("asdf"))
-print(is_unique("asdfa"))
